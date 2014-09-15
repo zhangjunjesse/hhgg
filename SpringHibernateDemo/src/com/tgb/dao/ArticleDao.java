@@ -12,5 +12,4 @@ public interface ArticleDao {
 	
 	public Article getArticleById(String id);
 	public Integer getTotlePages(String tag);
-	
 }
