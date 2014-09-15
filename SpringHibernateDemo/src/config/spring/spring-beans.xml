@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+<!-- 	<bean id="userDao" class="com.tgb.dao.UserDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean> -->
+	
+	<bean id="articleDao" class="com.tgb.dao.ArticleDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="tagDao" class="com.tgb.dao.TagDaoImpl">
+	    <property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- <bean id="userManagerBase" class="com.tgb.manager.UserManagerImpl">
+		<property name="userDao" ref="userDao"></property>
+	</bean> -->
+	
+	<bean id="articleManagerBase" class="com.tgb.manager.ArticleManagerImpl">
+	    <property name="articleDao" ref="articleDao"></property>
+	    <property name="tagDao" ref="tagDao"></property>
+	</bean>
+	
+	
+	<!-- 此处为代理 -->
+	<!-- <bean name="userManager" parent="transactionProxy">
+		<property name="target" ref="userManagerBase"></property>
+	</bean>	 -->
+	
+	<bean name="articleManager" parent="transactionProxy">
+		<property name="target" ref="articleManagerBase"></property>
+	</bean>	
+</beans>
